@@ -1,4 +1,4 @@
-import { Controller,Delete,Get, Patch, Post, Put,Body, Query, Param, UsePipes, ValidationPipe, ParseIntPipe } from "@nestjs/common";
+import { Controller,Delete,Get, Patch, Post, Put,Body, Query, Param, HttpStatus, ParseIntPipe, ParseBoolPipe, BadRequestException } from "@nestjs/common";
 import { TaskService } from "./task.service";
 import { CreateTaskDto } from "./dto/create-task.dto";
 import { UpdateTaskDto } from "./dto/update-task.dto";
@@ -17,7 +17,7 @@ getAllTasks(@Query() query:any){
   return  this.taskService.getTasks();
 }
 
-@Get(':id')
+@Get('/:id')
 getTaskById(@Param('id', ParseIntPipe) id:number){
   return  this.taskService.getTaskById(id);
 }
@@ -46,5 +46,12 @@ DeleteTask(){
 updateTaskStatus(){
     return this.taskService.updateTaskStatus();
 }
+
+
+
+
+
+
+
 
 }
